@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Cecytem</title>
+</head>
+<body>
+
+    <!-- Header con menú -->
+    <header class="header">
+        <div class="header-content container">
+            <h1>CECYTEM</h1>
+        </div>
+
+        <div class="menu container">
+            <!-- Toggle de menú (hamburguesa) para móviles -->
+            <input type="checkbox" id="menu" aria-label="Abrir menú de navegación">
+            <label for="menu" class="burger" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <nav class="navbar" aria-label="Menú principal">
+                <ul>
+                    <li><a href="Matematicas.html">Matematicas</a></li>
+                    <li><a href="Cultura.html">Cultura Digital</a></li>
+                    <li><a href="Humanidades.html">Humanidades</a></li>
+                    <li><a href="Recursos.html">Recursos Socioemocionales</a></li>
+                    <li><a href="Codifica.html">Codifica</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sección de inicio -->
+    <section class="inicio">
+        <div class="inicio-1">
+            <h2>Acerca de CECYTEM</h2>
+            <p class="txt-p">
+                El Colegio de Estudios Científicos y Tecnológicos del Estado de México (CECyTEM) nació en 
+                1994 como resultado de un convenio entre el Gobierno Federal y el Gobierno del Estado de México, 
+                con el objetivo de ofrecer una educación media superior de calidad en zonas urbanas y rurales donde 
+                existía un fuerte rezago educativo. Desde entonces, se ha consolidado como un sistema de bachillerato 
+                tecnológico bivalente, que permite a los estudiantes obtener tanto su certificado de preparatoria como una carrera técnica.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contador de visitantes -->
+<section class="contador-visitas">
+    <h3>Visitas a esta página:</h3>
+    <p id="contador">Cargando...</p>
+</section>
+
+<script>
+    const contador = document.getElementById('contador');
+
+    // Obtener visitas desde localStorage
+    let visitas = localStorage.getItem('visitas');
+    if (!visitas) visitas = 0;
+
+    // Incrementar contador
+    visitas = parseInt(visitas) + 1;
+    localStorage.setItem('visitas', visitas);
+
+    // Mostrar en pantalla
+    contador.textContent = visitas;
+</script>
+
+
+
+</body>
+</html>
