@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matemáticas</title>
+  <link rel="stylesheet" href="Mate.css">
+  <script src="js/animations.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Matemáticas</h1>
+    <p class="lead">
+      Un mapa claro y honesto de los conceptos que sostienen el análisis de datos: desde la incertidumbre y el muestreo hasta Bayes, Simpson y la visualización con valores atípicos.
+    </p>
+    <div class="header-actions">
+      <button type="button" onclick="location.href='index.html'">Volver al índice</button>
+    </div>
+  </header>
+
+  <!-- Tabla de contenidos (anclas) -->
+  <nav class="toc" aria-label="Tabla de contenidos — Matemáticas">
+    <ul>
+      <li><a href="#1-estadistica">1. Estadística</a></li>
+      <li><a href="#2-incertidumbre-variabilidad">2. Incertidumbre</a></li>
+      <li><a href="#3-equiprobabilidad-hipotesis-probabilidad-frecuencia-simulacion">3. Probabilidad y simulación</a></li>
+      <li><a href="#4-tecnica-conteo">4. Técnica de conteo</a></li>
+      <li><a href="#5-bayes">5. Teorema de Bayes</a></li>
+      <li><a href="#6-analisis-graficas">6. Análisis de gráficas</a></li>
+      <li><a href="#7-variables-categoricas">7. Variables categóricas</a></li>
+      <li><a href="#8-tablas-contingencia">8. Tablas de contingencia</a></li>
+      <li><a href="#9-variables-cuantitativas">9. Variables cuantitativas</a></li>
+      <li><a href="#10-graficas-valores-atipicos">10. Valores atípicos</a></li>
+      <li><a href="#11-paradoja-simpson">11. Paradoja de Simpson</a></li>
+      <li><a href="#12-imposibilidad-muestreo-aleatoriedad">12. Muestreo</a></li>
+      <li><a href="#13-tabla-frecuencia">13. Tabla de frecuencia</a></li>
+      <li><a href="#14-probabilidad-condicional">14. Probabilidad condicional</a></li>
+      <li><a href="#15-factorial">15. Factorial</a></li>
+      <li><a href="#16-regla-producto">16. Regla de producto</a></li>
+      <li><a href="#ejemplos-integrados">Ejemplos</a></li>
+      <li><a href="#resumen">Resumen</a></li>
+      <li><a href="#cuestionario">Cuestionario</a></li>
+      <li><a href="#recursos">Recursos</a></li>
+      <li><a href="#visor-pdf">Visor PDF</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="1-estadistica">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop" alt="Estadística" class="section-image">
+      <h2>1. Estadística</h2>
+      <p>
+        La estadística estudia cómo recolectar, organizar, resumir, analizar e interpretar datos para tomar decisiones con incertidumbre. Se divide en dos grandes ramas: <strong>descriptiva</strong> (resumen y visualización) e <strong>inferencial</strong> (conclusiones sobre una población a partir de una muestra).
+      </p>
+      <ul>
+        <li><strong>Objetivo:</strong> extraer información útil de datos y cuantificar el grado de confianza.</li>
+        <li><strong>Componentes:</strong> diseño de estudios, muestreo, estimación, pruebas de hipótesis, modelos.</li>
+        <li><strong>Herramientas:</strong> medidas de tendencia central, dispersión, gráficos, probabilidad.</li>
+      </ul>
+      <div class="math">Media: \(\bar{x}=\dfrac{1}{n}\sum_{i=1}^n x_i\) · Varianza muestral: \(s^2=\dfrac{1}{n-1}\sum_{i=1}^n (x_i-\bar{x})^2\)</div>
+    </section>
+
+    <section id="2-incertidumbre-variabilidad">
+      <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=800&h=400&fit=crop" alt="Incertidumbre y variabilidad" class="section-image">
+      <h2>2. Incertidumbre y variabilidad</h2>
+      <p>
+        <strong>Incertidumbre</strong> es el desconocimiento acerca del resultado de un fenómeno. <strong>Variabilidad</strong> describe la dispersión de resultados alrededor de algun centro. La probabilidad y las medidas de dispersión cuantifican ambos aspectos.
+      </p>
+      <ul>
+        <li><strong>Fuentes:</strong> muestreo, medición, procesos intrínsecamente aleatorios.</li>
+        <li><strong>Medidas de variabilidad:</strong> rango, varianza, desviación estándar, IQR.</li>
+        <li><strong>Implicación:</strong> toda estimación lleva un margen de error; la inferencia reconoce y comunica esa incertidumbre.</li>
+      </ul>
+      <div class="math">Desviación estándar: \(\sigma=\sqrt{\dfrac{1}{N}\sum_{i=1}^N (x_i-\mu)^2}\) · IQR: \(Q_3-Q_1\)</div>
+    </section>
+
+    <section id="3-equiprobabilidad-hipotesis-probabilidad-frecuencia-simulacion">
+      <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=800&h=400&fit=crop" alt="Probabilidad" class="section-image">
+      <h2>3. Equiprobabilidad, hipótesis, probabilidad, frecuencia y simulación</h2>
+      <h3>Equiprobabilidad</h3>
+      <p>
+        En un espacio finito, los resultados son <strong>equiprobables</strong> si cada resultado tiene la misma probabilidad. Útil para contar y asignar probabilidades uniformes cuando no hay sesgos.
+      </p>
+      <div class="math">Si hay \(N\) resultados equiprobables, entonces \(P(\text{cada resultado})=\dfrac{1}{N}\).</div>
+
+      <h3>Hipótesis</h3>
+      <p>
+        Una <strong>hipótesis</strong> estadística es una afirmación sobre un parámetro (p.ej. media poblacional). Las pruebas evalúan evidencia contra una hipótesis nula \(H_0\) comparada con una alternativa \(H_1\).
+      </p>
+
+      <h3>Probabilidad y frecuencia</h3>
+      <p>
+        La <strong>probabilidad</strong> es una medida del grado de creencia o del límite de la frecuencia relativa de un evento. La <strong>frecuencia relativa</strong> aproxima probabilidades mediante repetición.
+      </p>
+      <div class="math">Frecuencia relativa: \(\hat{p}=\dfrac{\text{número de éxitos}}{\text{número de ensayos}}\)</div>
+
+      <h3>Simulación</h3>
+      <p>
+        La <strong>simulación</strong> genera resultados de un proceso aleatorio para estimar probabilidades o verificar comportamientos de modelos cuando el análisis exacto es complejo.
+      </p>
+    </section>
+
+    <section id="4-tecnica-conteo">
+      <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=400&fit=crop" alt="Técnicas de conteo" class="section-image">
+      <h2>4. Técnica de conteo</h2>
+      <p>
+        Las técnicas de conteo permiten cuantificar resultados posibles sin enumerarlos uno a uno: <strong>regla de producto</strong>, principio aditivo, <strong>permutaciones</strong>, <strong>combinaciones</strong> y <strong>variaciones</strong>.
+      </p>
+      <ul>
+        <li><strong>Principio aditivo:</strong> si un evento puede ocurrir de \(a\) formas y otro disjunto de \(b\) formas, total \(a+b\).</li>
+        <li><strong>Regla de producto:</strong> si un proceso tiene \(a\) opciones y otro \(b\) opciones independientes, total \(a\cdot b\).</li>
+        <li><strong>Permutaciones:</strong> orden importa; combinaciones: orden no importa.</li>
+      </ul>
+      <div class="math">Permutaciones: \(P(n,k)=\dfrac{n!}{(n-k)!}\) · Combinaciones: \(C(n,k)=\dfrac{n!}{k!(n-k)!}\)</div>
+    </section>
+
+    <section id="5-bayes">
+      <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&h=400&fit=crop" alt="Teorema de Bayes" class="section-image">
+      <h2>5. Teorema de Bayes</h2>
+      <p>
+        Bayes actualiza probabilidades con nueva evidencia. Relaciona probabilidades previas y verosimilitudes para obtener probabilidades posteriores.
+      </p>
+      <div class="math">
+        Teorema de Bayes: \(
+        P(A\mid B)=\dfrac{P(B\mid A)\,P(A)}{P(B)}\), con \(
+        P(B)=\sum_i P(B\mid A_i)P(A_i)\) para una partición \(\{A_i\}\).
+      </div>
+      <div class="note">
+        Ejemplo: test diagnóstico con sensibilidad y especificidad conocidas; Bayes estima la probabilidad de enfermedad dado un resultado positivo considerando la prevalencia.
+      </div>
+    </section>
+
+    <section id="6-analisis-graficas">
+      <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=800&h=400&fit=crop" alt="Análisis de gráficas" class="section-image">
+      <h2>6. Análisis de gráficas cualitativas y cuantitativas</h2>
+      <h3>Gráficas cualitativas</h3>
+      <ul>
+        <li><strong>Barras:</strong> compara frecuencias por categoría.</li>
+        <li><strong>Pastel:</strong> proporciones en el total (usar con pocas categorías).</li>
+        <li><strong>Diagramas de mosaico:</strong> relaciones entre dos variables categóricas.</li>
+      </ul>
+      <h3>Gráficas cuantitativas</h3>
+      <ul>
+        <li><strong>Histogramas:</strong> distribución y forma (asimetría, colas).</li>
+        <li><strong>Boxplots:</strong> resumen con mediana, cuartiles y valores atípicos.</li>
+        <li><strong>Dispersión:</strong> relación entre dos variables numéricas.</li>
+      </ul>
+      <div class="warn">
+        Interpretar forma, tendencia central y dispersión. Evitar conclusiones sin escalar correctamente, y considerar valores atípicos.
+      </div>
+    </section>
+
+    <section id="7-variables-categoricas">
+      <h2>7. Variables categóricas</h2>
+      <p>
+        Clasifican observaciones en grupos. Pueden ser <strong>nominales</strong> (sin orden, p.ej., color) u <strong>ordinales</strong> (con orden, p.ej., niveles de satisfacción).
+      </p>
+      <ul>
+        <li><strong>Medidas útiles:</strong> proporciones, modas, tablas de contingencia.</li>
+        <li><strong>Análisis:</strong> pruebas de independencia (ji-cuadrada), medidas de asociación.</li>
+        <li><strong>Visualización:</strong> barras, mosaicos, heatmaps de frecuencias.</li>
+      </ul>
+    </section>
+
+    <section id="8-tablas-contingencia">
+      <h2>8. Tablas de contingencia</h2>
+      <p>
+        Resumen conjunto de dos (o más) variables categóricas. Filas y columnas representan categorías; las celdas muestran frecuencias o proporciones.
+      </p>
+      <table>
+        <thead>
+          <tr><th>Categoría A \ B</th><th>B1</th><th>B2</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>A1</td><td>n11</td><td>n12</td><td>n1·</td></tr>
+          <tr><td>A2</td><td>n21</td><td>n22</td><td>n2·</td></tr>
+          <tr><td>Total</td><td>n·1</td><td>n·2</td><td>n··</td></tr>
+        </tbody>
+      </table>
+      <div class="math">
+        Proporción conjunta: \(p_{ij}=\dfrac{n_{ij}}{n_{\cdot\cdot}}\) · Marginal: \(p_{i\cdot}=\dfrac{n_{i\cdot}}{n_{\cdot\cdot}}\), \(p_{\cdot j}=\dfrac{n_{\cdot j}}{n_{\cdot\cdot}}\)
+      </div>
+    </section>
+
+    <section id="9-variables-cuantitativas">
+      <h2>9. Variables cuantitativas</h2>
+      <p>
+        Miden magnitudes numéricas. Pueden ser <strong>discretas</strong> (conteos) o <strong>continuas</strong> (mediciones). Su análisis usa medidas de tendencia central y dispersión, y modelos de distribución.
+      </p>
+      <ul>
+        <li><strong>Medidas clave:</strong> media, mediana, moda; varianza, desviación estándar, IQR.</li>
+        <li><strong>Distribuciones:</strong> normal, binomial (discreta), exponencial, etc.</li>
+        <li><strong>Relaciones:</strong> correlación, regresión.</li>
+      </ul>
+      <div class="math">Coeficiente de correlación: \(r=\dfrac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum (x_i-\bar{x})^2}\sqrt{\sum (y_i-\bar{y})^2}}\)</div>
+    </section>
+
+    <section id="10-graficas-valores-atipicos">
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop" alt="Valores atípicos" class="section-image">
+      <h2>10. Estadística con gráfica considerando valores atípicos</h2>
+      <p>
+        Los <strong>valores atípicos</strong> son observaciones extremas que pueden ser señales valiosas o errores. Las gráficas deben resaltar su presencia sin distorsionar la lectura.
+      </p>
+      <ul>
+        <li><strong>Visualización:</strong> boxplots, scatter con ejes truncados, histogramas con bins adecuados.</li>
+        <li><strong>Efecto:</strong> influyen en la media y la desviación estándar; menos en la mediana y el IQR.</li>
+        <li><strong>Estrategias:</strong> análisis robusto, etiquetar puntos, verificar origen (error vs. fenómeno real).</li>
+      </ul>
+      <div class="math">
+        Regla de Tukey: atípico si \(x &lt; Q_1-1.5\cdot IQR\) o \(x &gt; Q_3+1.5\cdot IQR\).
+      </div>
+    </section>
+
+    <section id="11-paradoja-simpson">
+      <h2>11. Paradoja de Simpson</h2>
+      <p>
+        Ocurre cuando una tendencia aparece en varios grupos separados pero se invierte al combinar los datos. Señala la importancia de <strong>variables de confusión</strong> y estratificación adecuada.
+      </p>
+      <ul>
+        <li><strong>Causa:</strong> mezcla de grupos con tamaños y distribuciones diferentes.</li>
+        <li><strong>Prevención:</strong> analizar por subgrupos relevantes, ajustar modelos, revisar sesgos.</li>
+        <li><strong>Ejemplo típico:</strong> tasas de éxito entre departamentos con tamaños desiguales invierten la conclusión global.</li>
+      </ul>
+      <div class="warn">Conclusiones agregadas pueden ser engañosas; estratifica antes de decidir.</div>
+    </section>
+
+    <section id="12-imposibilidad-muestreo-aleatoriedad">
+      <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=400&fit=crop" alt="Muestreo" class="section-image">
+      <h2>12. Imposibilidad, técnica de muestreo y aleatoriedad</h2>
+      <p>
+        En poblaciones grandes, estudiar a todos puede ser <strong>imposible</strong>. El <strong>muestreo</strong> selecciona una parte representativa para inferir sobre el total, apoyado en la <strong>aleatoriedad</strong> para evitar sesgos.
+      </p>
+      <ul>
+        <li><strong>Muestreo probabilístico:</strong> simple aleatorio, estratificado, por conglomerados, sistemático.</li>
+        <li><strong>No probabilístico:</strong> conveniencia, bola de nieve, juicio experto (útil exploratorio, limitado inferencialmente).</li>
+        <li><strong>Aleatoriedad:</strong> selección al azar garantiza igualdad de oportunidad y permite cuantificar error.</li>
+      </ul>
+      <div class="math">Error estándar de la media muestral (población grande): \(SE=\dfrac{s}{\sqrt{n}}\)</div>
+    </section>
+
+    <section id="13-tabla-frecuencia">
+      <h2>13. Tabla de frecuencia, frecuencia absoluta y relativa</h2>
+      <p>
+        Una tabla de frecuencia organiza datos en categorías o clases e informa cuántos casos hay en cada una (<strong>frecuencia absoluta</strong>) y qué proporción representan del total (<strong>frecuencia relativa</strong>).
+      </p>
+      <table>
+        <thead>
+          <tr><th>Clase</th><th>Frecuencia absoluta</th><th>Frecuencia relativa</th><th>Frecuencia acumulada</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Clase 1</td><td>f1</td><td>f1/n</td><td>f1</td></tr>
+          <tr><td>Clase 2</td><td>f2</td><td>f2/n</td><td>f1+f2</td></tr>
+          <tr><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+        </tbody>
+      </table>
+      <div class="math">Frecuencia relativa: \(\hat{p}_k=\dfrac{f_k}{n}\) · Acumulada: \(F_k=\sum_{i\le k} f_i\)</div>
+    </section>
+
+    <section id="14-probabilidad-condicional">
+      <h2>14. Probabilidad condicional</h2>
+      <p>
+        Mide la probabilidad de un evento dado que otro ha ocurrido. Es esencial para dependencias y para aplicar Bayes.
+      </p>
+      <div class="math">
+        Definición: \(P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}\), si \(P(B)&gt;0\). Independencia: \(A\) y \(B\) independientes si \(P(A\mid B)=P(A)\).
+      </div>
+      <div class="note">En tablas de contingencia, usa proporciones condicionadas por filas o columnas.</div>
+    </section>
+
+    <section id="15-factorial">
+      <h2>15. Factorial</h2>
+      <p>
+        El <strong>factorial</strong> de \(n\) es el producto de los primeros \(n\) enteros positivos. Aparece en conteo, combinatoria y series.
+      </p>
+      <div class="math">
+        Definición: \(n!=n\cdot(n-1)\cdot(n-2)\cdots 2\cdot 1\), con \(0!=1\).
+      </div>
+      <ul>
+        <li><strong>Usos:</strong> permutaciones, coeficientes binomiales, expansión de potencias.</li>
+        <li><strong>Crecimiento:</strong> muy rápido; a menudo se trabaja con log-factoriales.</li>
+      </ul>
+    </section>
+
+    <section id="16-regla-producto">
+      <h2>16. Regla de producto</h2>
+      <p>
+        Si un proceso se realiza en pasos secuenciales e independientes con \(a_1, a_2, \dots, a_k\) opciones, el número total de resultados es el producto de las opciones.
+      </p>
+      <div class="math">
+        Regla de producto: \(\text{Total}= \prod_{i=1}^{k} a_i\).
+      </div>
+      <div class="ok">
+        Útil para construir espacios muestrales: p.ej., contraseñas con longitud \(L\) y un alfabeto de tamaño \(A\) generan \(A^L\) combinaciones.
+      </div>
+    </section>
+
+    <section id="ejemplos-integrados">
+      <h2>Ejemplos integrados</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Conteo con equiprobabilidad</h3>
+          <p><strong>Escenario:</strong> lanzar dos dados justos.</p>
+          <div class="math">Total de resultados: \(6\cdot 6=36\). Suma 7: \(6\) casos → \(P=6/36=1/6\).</div>
+        </div>
+        <div class="card">
+          <h3>Bayes en pruebas médicas</h3>
+          <p><strong>Escenario:</strong> sensibilidad 0.95, especificidad 0.98, prevalencia 0.01.</p>
+          <div class="math">
+            \(P(+)=0.95\cdot 0.01+0.02\cdot 0.99=0.0287\).<br />
+            \(P(\text{enf}\mid +)=\dfrac{0.95\cdot 0.01}{0.0287}\approx 0.331\).
+          </div>
+        </div>
+        <div class="card">
+          <h3>Simpson y confusión</h3>
+          <p><strong>Escenario:</strong> tratamiento A parece mejor globalmente, pero peor dentro de cada grupo de gravedad.</p>
+          <p><strong>Clave:</strong> estratificar por gravedad antes de comparar.</p>
+        </div>
+        <div class="card">
+          <h3>Valores atípicos</h3>
+          <p><strong>Escenario:</strong> un sueldo extraordinario eleva la media.</p>
+          <p><strong>Solución:</strong> reportar mediana e IQR, además de la media; usar boxplot.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="resumen">
+      <h2>Resumen práctico</h2>
+      <ul>
+        <li><strong>Define la pregunta:</strong> qué quieres estimar o comparar.</li>
+        <li><strong>Diseña el muestreo:</strong> aleatoriedad y representatividad primero.</li>
+        <li><strong>Describe los datos:</strong> tablas, gráficos y medidas robustas.</li>
+        <li><strong>Modela la incertidumbre:</strong> probabilidad, condicional y Bayes.</li>
+        <li><strong>Cuida las conclusiones:</strong> revisa atípicos, estratifica (Simpson), reporta supuestos.</li>
+      </ul>
+    </section>
+
+    <section id="cuestionario">
+      <h2>Cuestionario: comprueba tus conocimientos</h2>
+      <p>Responde las siguientes preguntas y pulsa <strong>Verificar respuestas</strong> para obtener tu puntuación.</p>
+
+      <form id="quiz-form">
+        <ol>
+          <li>
+            ¿Cuál es la diferencia principal entre estadística descriptiva e inferencial?
+            <div><label><input type="radio" name="q1" value="a"> Descriptiva resume datos; inferencial generaliza a una población.</label></div>
+            <div><label><input type="radio" name="q1" value="b"> Descriptiva usa probabilidades; inferencial solo usa gráficos.</label></div>
+            <div><label><input type="radio" name="q1" value="c"> No hay diferencia, son sinónimos.</label></div>
+          </li>
+
+          <li>
+            Si una variable tiene muchos valores atípicos, ¿qué medida es más robusta frente a ellos?
+            <div><label><input type="radio" name="q2" value="a"> Media</label></div>
+            <div><label><input type="radio" name="q2" value="b"> Mediana</label></div>
+            <div><label><input type="radio" name="q2" value="c"> Desviación estándar</label></div>
+          </li>
+
+          <li>
+            En un test diagnóstico con baja prevalencia, ¿qué resultado es típico tras aplicar Teorema de Bayes?
+            <div><label><input type="radio" name="q3" value="a"> Alta probabilidad posterior pese a falsos positivos.</label></div>
+            <div><label><input type="radio" name="q3" value="b"> Probabilidad posterior puede ser baja incluso con alta sensibilidad.</label></div>
+            <div><label><input type="radio" name="q3" value="c"> La prevalencia no afecta al resultado.</label></div>
+          </li>
+
+          <li>
+            ¿Qué indica la regla de producto al construir espacios muestrales?
+            <div><label><input type="radio" name="q4" value="a"> Sumar opciones de cada paso.</label></div>
+            <div><label><input type="radio" name="q4" value="b"> Multiplicar las opciones de pasos independientes.</label></div>
+            <div><label><input type="radio" name="q4" value="c"> Restar opciones para obtener combinaciones.</label></div>
+          </li>
+
+          <li>
+            ¿Qué prueba es adecuada para evaluar independencia entre dos variables categóricas?
+            <div><label><input type="radio" name="q5" value="a"> t-test</label></div>
+            <div><label><input type="radio" name="q5" value="b"> ANOVA</label></div>
+            <div><label><input type="radio" name="q5" value="c"> Chi-cuadrada</label></div>
+          </li>
+
+          <li>
+            La paradoja de Simpson advierte sobre:
+            <div><label><input type="radio" name="q6" value="a"> Concluir igual en subgrupos y en agregado.</label></div>
+            <div><label><input type="radio" name="q6" value="b"> Reversión de una tendencia al agregar grupos debido a confusión.</label></div>
+            <div><label><input type="radio" name="q6" value="c"> Uso incorrecto de histogramas.</label></div>
+          </li>
+
+          <li>
+            ¿Cómo se calcula la probabilidad condicional \(P(A\mid B)\)?
+            <div><label><input type="radio" name="q7" value="a"> \(P(A\cap B)/P(B)\)</label></div>
+            <div><label><input type="radio" name="q7" value="b"> \(P(A)+P(B)\</label></div>
+            <div><label><input type="radio" name="q7" value="c"> \(P(A)P(B)\)</label></div>
+          </li>
+
+          <li>
+            ¿Qué fórmula corresponde a la combinación \(C(n,k)\)?
+            <div><label><input type="radio" name="q8" value="a"> \(\dfrac{n!}{(n-k)!}\)</label></div>
+            <div><label><input type="radio" name="q8" value="b"> \(\dfrac{n!}{k!(n-k)!}\)</label></div>
+            <div><label><input type="radio" name="q8" value="c"> \(n^k\)</label></div>
+          </li>
+
+          <li>
+            ¿Cuál es la ventaja principal de usar simulación cuando el análisis exacto es complejo?
+            <div><label><input type="radio" name="q9" value="a"> Aproximar probabilidades y comportamiento del modelo mediante experimentación computacional.</label></div>
+            <div><label><input type="radio" name="q9" value="b"> Eliminar la necesidad de datos reales.</label></div>
+            <div><label><input type="radio" name="q9" value="c"> Garantizar resultados exactos.</label></div>
+          </li>
+
+          <li>
+            ¿Qué indica la desviación estándar?
+            <div><label><input type="radio" name="q10" value="a"> Medida de tendencia central.</label></div>
+            <div><label><input type="radio" name="q10" value="b"> Medida de dispersión alrededor de la media.</label></div>
+            <div><label><input type="radio" name="q10" value="c"> Número de observaciones en la muestra.</label></div>
+          </li>
+        </ol>
+
+        <p>
+          <button type="button" id="check-btn">Verificar respuestas</button>
+          <button type="button" id="reset-btn">Reiniciar</button>
+        </p>
+      </form>
+
+      <div id="quiz-result" aria-live="polite" style="margin-top:1rem"></div>
+    </section>
+
+    <section id="recursos">
+      <h2>Recursos y buenas prácticas</h2>
+      <ul>
+        <li>Leer documentación oficial de OpenJDK/Oracle y guías de NetBeans/IntelliJ.</li>
+        <li>Practicar con proyectos pequeños: CRUD, gestor de tareas, juego sencillo.</li>
+        <li>Usar control de versiones (Git) y escribir tests (JUnit).</li>
+        <li>Aplicar principios SOLID y patrones de diseño cuando el proyecto lo requiera.</li>
+      </ul>
+      <p class="note">Consejo: dominar conceptos básicos (tipos, control, OOP) antes de abordar frameworks complejos. Refactoriza con frecuencia y escribe pruebas automatizadas.</p>
+    </section>
+
+  </main>
+
+  <script>
+    (function(){
+      const answers = {
+        q1: 'a',
+        q2: 'b',
+        q3: 'b',
+        q4: 'b',
+        q5: 'c',
+        q6: 'b',
+        q7: 'a',
+        q8: 'b',
+        q9: 'a',
+        q10: 'b'
+      };
+
+      const form = document.getElementById('quiz-form');
+      const resultEl = document.getElementById('quiz-result');
+      const checkBtn = document.getElementById('check-btn');
+      const resetBtn = document.getElementById('reset-btn');
+
+      function evaluate() {
+        let correct = 0;
+        const feedback = [];
+        for (let i = 1; i <= 10; i++) {
+          const name = 'q' + i;
+          const selected = form.elements[name] && form.elements[name].value;
+          const user = selected || null;
+          const ok = user === answers[name];
+          if (ok) correct++;
+          feedback.push({
+            q: i,
+            ok,
+            user,
+            correct: answers[name]
+          });
+        }
+
+        const percent = Math.round((correct / 10) * 100);
+        let html = '<strong>Resultado:</strong> Obtuviste ' + correct + ' de 10 respuestas correctas (' + percent + '%).';
+
+        html += '<details style="margin-top:.6rem"><summary>Ver detalle por pregunta</summary><ol style="margin-top:.6rem">';
+        feedback.forEach(item => {
+          const status = item.ok ? '✅ correcta' : '❌ incorrecta';
+          html += '<li>Pregunta ' + item.q + ': ' + status + '. ';
+          if (!item.user) html += 'No respondiste. ';
+          html += 'Respuesta correcta: <strong>' + item.correct + '</strong>.</li>';
+        });
+        html += '</ol></details>';
+
+        resultEl.innerHTML = html;
+        resultEl.scrollIntoView({behavior: 'smooth', block: 'center'});
+      }
+
+      function resetForm() {
+        form.reset();
+        resultEl.innerHTML = '';
+      }
+
+      checkBtn.addEventListener('click', evaluate);
+      resetBtn.addEventListener('click', resetForm);
+    })();
+  </script>
+
+  <section id="visor-pdf">
+  <h2>Visualizador de PDF</h2>
+  
+  <!-- Usando la etiqueta embed -->
+  <embed src="matemáticas .pdf" type="application/pdf" width="100%" height="600px" />
+
+  <!-- Alternativa con iframe -->
+  <!--
+  <iframe src="documento.pdf" width="100%" height="600px" style="border:none;"></iframe>
+  -->
+  
+  <!-- Enlace para descargar el PDF -->
+  <p>
+    <a href="matemáticas .pdf" download>Descargar PDF</a>
+  </p>
+</section>
+
+  <!-- Sección de Video de YouTube -->
+  <section id="video-youtube" class="video-section">
+    <h2>📹 Video Tutorial</h2>
+    <p>Refuerza tus conocimientos con este video:</p>
+    <div class="video-container">
+      <iframe
+        src="https://youtube.com/shorts/QH6f-r-rJnA?feature=share"
+        title="Video sobre matemáticas y estadística"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+    
+  </section>
+
+
+  <script>
+    // marcar enlace activo en la TOC cuando cambia el hash
+    (function () {
+      const links = document.querySelectorAll('.toc a');
+      function setActive() {
+        const hash = location.hash || '#1-estadistica';
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
+      }
+      window.addEventListener('hashchange', setActive);
+      window.addEventListener('load', setActive);
+      // cambiar hash sin recargar al hacer clic y aplicar active rápidamente
+      links.forEach(a => a.addEventListener('click', (e) => {
+        // navegador ya ajusta location.hash; pequeña espera para setActive
+        setTimeout(setActive, 60);
+      }));
+    })();
+  </script>
+</body>
+</html>
